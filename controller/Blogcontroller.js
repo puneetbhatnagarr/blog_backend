@@ -31,6 +31,19 @@ class Blogcontroller{
             console.log(err)
         }
     }
+
+    static blogview=async(req,res)=>{
+        try{
+            const result= await blogModel.findById(req.params.id)
+            res.status(200).json({
+                // message:"IT IS RUNNING ",
+                success:true,
+                result 
+            })
+        }catch(err){
+            console.log(err)
+        }
+    }
 }
 
 module.exports = Blogcontroller
