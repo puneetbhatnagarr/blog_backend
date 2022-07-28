@@ -34,6 +34,7 @@ class Blogcontroller{
 
     static blogview=async(req,res)=>{
         try{
+            res.header("Access-Control-Allow-Origin","*");
             const result= await blogModel.findById(req.params.id)
             res.status(200).json({
                 // message:"IT IS RUNNING ",
