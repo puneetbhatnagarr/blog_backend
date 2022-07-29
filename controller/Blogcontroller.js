@@ -1,4 +1,5 @@
 const blogModel = require('../models/Blog.js')
+const contactModel = require('../models/contact.js')
 class Blogcontroller{
     static getall = async(req,res)=>{
         try{
@@ -45,6 +46,35 @@ class Blogcontroller{
             console.log(err)
         }
     }
+
+    static contactinsert = async(req,res)=>{
+        console.log(req.body)
+        try{
+           const contactinsert = await contactModel.create(req.body)
+           res.status(200).json({
+            // message:"IT IS RUNNING ",
+            success:true,
+            contactinsert 
+           })
+        }catch(err){
+            console.log(err)
+        }
+    }
+
+    static getcontact = async(req,res)=>{
+        try{
+            res.header("Access-Control-Allow-Origin","*")
+            const contactall = await contactModel.find()
+            res.status(200).json({
+                success:true,
+                contactall
+            })
+            res.send(contactall)
+        }catch(err){
+            console.log(err);
+        }
+    }
+
 }
 
 module.exports = Blogcontroller
