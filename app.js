@@ -2,8 +2,8 @@ const express = require('express')
 const app = express()
 app.use(express.json());
 const port = process.env.PORT || 3000;
-var cors = require('cors');
-app.use(cors());
+const cors=require('cors');
+app.use(cors())
 var bodyParser = require('body-parser')
 const {connectdb} = require('./Db/connect_db.js')
 const web = require('./routes/web.js');
