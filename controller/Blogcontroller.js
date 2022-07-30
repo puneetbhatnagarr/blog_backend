@@ -35,7 +35,7 @@ class Blogcontroller{
 
     static blogview=async(req,res)=>{
         try{
-            res.header("Access-Control-Allow-Origin","*");
+            // res.header("Access-Control-Allow-Origin","*");
             const result= await blogModel.findById(req.params.id)
             res.status(200).json({
                 // message:"IT IS RUNNING ",
@@ -50,7 +50,7 @@ class Blogcontroller{
     static contactinsert = async(req,res)=>{
         console.log(req.body)
         try{
-            res.header("Access-Control-Allow-Origin","*");
+            // res.header("Access-Control-Allow-Origin","*");
            const contactinsert = await contactModel.create(req.body)
            res.status(201).json({
             // message:"IT IS RUNNING ",
@@ -64,7 +64,7 @@ class Blogcontroller{
 
     static getcontact = async(req,res)=>{
         try{
-            res.header("Access-Control-Allow-Origin","*")
+           
             const contactall = await contactModel.find()
             res.status(201).json({
                 message:"Successfully Registered",
