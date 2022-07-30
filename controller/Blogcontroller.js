@@ -51,9 +51,9 @@ class Blogcontroller{
         console.log(req.body)
         try{
            res.setHeader('Access-Control-Allow-Origin','*');
-           const insertcontact = await contactModel.create(req.body)
-           res.status(201).json({
-            // message:"IT IS RUNNING ",
+           const insertcontact = await contactModel.create(req.body);
+           res.status(200).json({
+            message:"Successfully Registered",
             success:true,
             insertcontact 
            })
@@ -66,7 +66,7 @@ class Blogcontroller{
         try{
            
             const contactall = await contactModel.find()
-            res.status(201).json({
+            res.status(200).json({
                 message:"Successfully Registered",
                 success:true,
                 contactall

@@ -3,19 +3,13 @@ const app = express()
 app.use(express.json());
 app.use((req,res,next)=>{
     res.setHeader('Access-Control-Allow-Origin','*');
-    res.setHeader('Access-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
-    res.setHeader('Access-Control-Allow-Methods','Content-Type','Authorization');
+   
     next(); 
 });
+
 const port = process.env.PORT || 3000;
 const cors=require('cors');
-app.use(cors({
-    origin: ['http://localhost:4200'],
-    "methods": "GET,PUT,POST",
-    "preflightContinue": false,
-    "optionsSuccessStatus": 204,
-    credentials: true
-}));
+app.use(cors());
 var bodyParser = require('body-parser')
 const {connectdb} = require('./Db/connect_db.js')
 const web = require('./routes/web.js');
