@@ -1,6 +1,12 @@
 const express = require('express')
 const app = express()
 app.use(express.json());
+app.use((req,res,next)=>{
+    res.setHeader('Access-Control-Allow-Origin','*');
+    res.setHeader('Access-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
+    res.setHeader('Access-Control-Allow-Methods','Content-Type','Authorization');
+    next(); 
+})
 const port = process.env.PORT || 3000;
 const cors=require('cors');
 app.use(cors())
@@ -17,11 +23,9 @@ connectdb();
 
 app.use("/api/pn",web)
 
-app.use(function(req,res,next){
-    res.header("Access-Control-Allow-Origin","*");
-    res.header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+
+
+  
 app.get("/",(req,res)=>{
     res.send('hello i am api')
 
