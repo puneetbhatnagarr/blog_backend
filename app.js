@@ -5,7 +5,9 @@ var bodyParser = require('body-parser')
 const {Router} = require('express')
 const {connectdb} = require('./Db/connect_db.js')
 const web = require('./routes/web.js');
-
+var cors = require('cors')
+ 
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
