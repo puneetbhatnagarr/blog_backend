@@ -3,7 +3,7 @@ const contactModel = require('../models/contact.js')
 class Blogcontroller{
     static getall = async(req,res)=>{
         try{
-            //res.header("Access-Control-Allow-Origin","*")
+            res.setHeader("Access-Control-Allow-Origin","*")
             const getall = await blogModel.find()
             res.status(200).json({
                 success:true,
