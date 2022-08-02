@@ -33,11 +33,11 @@ class Blogcontroller{
     static blogview=async(req,res)=>{
         try{
             // res.header("Access-Control-Allow-Origin","*");
-            const result= await blogModel.findById(req.params.id)
+            const viewresult = await blogModel.findById(req.params.id)
             res.status(200).json({
                 // message:"IT IS RUNNING ",
                 success:true,
-                result 
+                viewresult 
             })
         }catch(err){
             console.log(err)
@@ -56,6 +56,26 @@ class Blogcontroller{
         }
         
         
+    }
+
+    static updateProduct = async(req,res)=>{
+        try{
+            const updatedata = await blogModel.findByIdAndUpdate(req.params.id,req.body);
+            if(!updatedata){
+                return res.status(500).json({
+                    success:false,
+                    message:"product not found"
+                })
+            }
+            res.status(200).json({
+                // message:"ROuting is working fine"
+                success:true,
+                updatedata
+              })
+            res.send(updatedata)
+        }catch(err){
+            console.log(err)
+        }
     }
 
     // contact area...
