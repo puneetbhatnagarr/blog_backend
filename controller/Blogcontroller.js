@@ -18,19 +18,16 @@ class Blogcontroller{
     static bloginsert = async(req,res)=>{
         console.log(req.body)
         try{
-            const {title,description,body}=req.body
-
-            const getall = new blogModel({
-                title:title,
-                description:description,
-                body:body
+            res.setHeader('Access-Control-Allow-Origin','*');
+            const insertblog = await blogModel.create(req.body);
+            res.status(200).json({
+             message:"Successfully Registered",
+             success:true,
+             insertblog 
             })
-
-            const data = await getall.save()
-            res.send(data)
-        }catch(err){
-            console.log(err)
-        }
+         }catch(err){
+             console.log(err)
+         }
     }
 
     static blogview=async(req,res)=>{
@@ -46,7 +43,22 @@ class Blogcontroller{
             console.log(err)
         }
     }
+    static blogedit = async(req,res)=>{
+        // console.log(req.params.id)
+        try{
+            const {_id} = req.user
+            const result = await blogModel.findOne({user_id:_id})
+            console.log();
+            res.render('course/edit',{data1:result});
+        
+        }catch(error){
+            //console.log(error);
+        }
+        
+        
+    }
 
+    // contact area...
     static contactinsert = async(req,res)=>{
         console.log(req.body)
         try{
