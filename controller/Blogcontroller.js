@@ -60,6 +60,7 @@ class Blogcontroller{
 
     static updateblogs = async(req,res)=>{
         try{
+            res.setHeader('Access-Control-Allow-Origin','*');
             const updatedata = await blogModel.findByIdAndUpdate(req.params.id,req.body);
             if(!updatedata){
                 return res.status(500).json({
