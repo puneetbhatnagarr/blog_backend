@@ -58,7 +58,7 @@ class Blogcontroller{
         
     // }
 
-    static updateProduct = async(req,res)=>{
+    static updateblogs = async(req,res)=>{
         try{
             const updatedata = await blogModel.findByIdAndUpdate(req.params.id,req.body);
             if(!updatedata){
