@@ -43,20 +43,20 @@ class Blogcontroller{
             console.log(err)
         }
     }
-    static blogedit = async(req,res)=>{
-        // console.log(req.params.id)
-        try{
-            const {_id} = req.user
-            const result = await blogModel.findOne({user_id:_id})
-            console.log();
-            res.render('course/edit',{data1:result});
+    // static blogedit = async(req,res)=>{
+    //     // console.log(req.params.id)
+    //     try{
+    //         const {_id} = req.user
+    //         const result = await blogModel.findOne({user_id:_id})
+    //         console.log();
+    //         res.render('/edit',{data1:result});
         
-        }catch(error){
-            //console.log(error);
-        }
+    //     }catch(error){
+    //         //console.log(error);
+    //     }
         
         
-    }
+    // }
 
     static updateProduct = async(req,res)=>{
         try{
