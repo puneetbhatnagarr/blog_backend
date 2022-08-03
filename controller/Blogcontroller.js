@@ -43,20 +43,7 @@ class Blogcontroller{
             console.log(err)
         }
     }
-    // static blogedit = async(req,res)=>{
-    //     // console.log(req.params.id)
-    //     try{
-    //         const {_id} = req.user
-    //         const result = await blogModel.findOne({user_id:_id})
-    //         console.log();
-    //         res.render('/edit',{data1:result});
-        
-    //     }catch(error){
-    //         //console.log(error);
-    //     }
-        
-        
-    // }
+
 
     static updateblogs = async(req,res)=>{
         try{
@@ -74,6 +61,20 @@ class Blogcontroller{
                 updatedata
               })
             res.send(updatedata)
+        }catch(err){
+            console.log(err)
+        }
+    }
+
+    static blogdelete=async(req,res)=>{
+        try{
+             res.header("Access-Control-Allow-Origin","*");
+            const deleteresult = await blogModel.findByIdAndDelete(req.params.id)
+            res.status(200).json({
+                // message:"IT IS RUNNING ",
+                success:true,
+                deleteresult
+            })
         }catch(err){
             console.log(err)
         }
