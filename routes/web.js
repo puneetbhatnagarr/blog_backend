@@ -1,6 +1,6 @@
 const express = require('express')
 const Blogcontroller = require('../controller/Blogcontroller');
-
+const Usercontroller = require('../controller/Usercontroller')
 const router = express.Router();
 
 router.get('/getall',Blogcontroller.getall);
@@ -12,7 +12,8 @@ router.post('/contactinsert',Blogcontroller.contactinsert)
 router.get('/contactall',Blogcontroller.getcontact);
 
 
-
+router.post('/user/insert',Usercontroller.userregistration)
+router.post('/login',Usercontroller.user_login)
 
 
 
