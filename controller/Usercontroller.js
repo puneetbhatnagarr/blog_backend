@@ -48,13 +48,14 @@ class Usercontroller {
             const token = jwt.sign({ userID: user._id }, process.env.JWT_SECRET_KEY, { expiresIn: '5d' })
             console.log(token)
             res.cookie('token',token)
-            // console.log(user);
-            // if (user.role == "user") {
-            //   res.send({
-            //     status: "Success",
-            //     message: "LoggedIn",
-            //   });
-            // }
+            console.log(user);
+            res
+            .status(201)
+            .send({
+              status: "success",
+              message: "Login Successfully...",
+              "Token":token
+            });
           } else {
             res.send({
               status: "failed",
