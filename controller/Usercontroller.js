@@ -38,17 +38,19 @@ class Usercontroller {
   };
 
   static user_login = async (req, res) => {
+    console.log(req.body)
     try {
       const { email, password } = req.body;
       if (email && password) {
         const user = await userModel.findOne({ email: email });
+        console.log(user)
         if (user != null) {
           const isMatch = await bcrypt.compare(password, user.password);
           if (user.email === email && isMatch) {
             const token = jwt.sign({ userID: user._id }, process.env.JWT_SECRET_KEY, { expiresIn: '5d' })
             console.log(token)
             res.cookie('token',token)
-            console.log(user);
+           // console.log(user);
             res
             .status(201)
             .send({
