@@ -6,7 +6,10 @@ app.use((req,res,next)=>{
    
     next(); 
 });
-
+const dotenv = require('dotenv')
+const cookieParser = require('cookie-parser')
+app.use(cookieParser())
+dotenv.config({path:".env"})
 const port = process.env.PORT || 3000;
 const cors=require('cors');
 app.use(cors());
@@ -31,6 +34,6 @@ app.get("/",(req,res)=>{
 
 })
 
-app.listen(port,()=>{
-    console.log("server is running")
+app.listen(process.env.PORT,()=>{
+    console.log("server is running : ${process.env.PORT}")
 })

@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-database_url = "mongodb+srv://puneet:puneet@cluster0.0mcan.mongodb.net/blogapi?retryWrites=true&w=majority"
+
 
 const connectdb = ()=>{
-    return mongoose.connect(database_url).then(()=>{
+    return mongoose.connect(process.env.DB_URL).then(()=>{
         console.log('connect sucessfully')
 
     }).catch((error)=>{

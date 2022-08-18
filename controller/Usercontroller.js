@@ -1,5 +1,6 @@
 const userModel = require("../models/user.js");
 const bcrypt = require('bcrypt')
+var jwt = require('jsonwebtoken');
 class Usercontroller {
   static userregistration = async (req, res) => {
     const { name, email, password, password_confirmation } = req.body;
@@ -44,6 +45,9 @@ class Usercontroller {
         if (user != null) {
           const isMatch = await bcrypt.compare(password, user.password);
           if (user.email === email && isMatch) {
+            const token = jwt.sign({ userID: user._id }, process.env.JWT_SECRET_KEY, { expiresIn: '5d' })
+            console.log(token)
+            res.cookie('token',token)
             // console.log(user);
             if (user.role == "user") {
               res.send({
