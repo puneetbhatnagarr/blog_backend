@@ -49,12 +49,12 @@ class Usercontroller {
             console.log(token)
             res.cookie('token',token)
             // console.log(user);
-            if (user.role == "user") {
-              res.send({
-                status: "Success",
-                message: "LoggedIn",
-              });
-            }
+            // if (user.role == "user") {
+            //   res.send({
+            //     status: "Success",
+            //     message: "LoggedIn",
+            //   });
+            // }
           } else {
             res.send({
               status: "failed",
