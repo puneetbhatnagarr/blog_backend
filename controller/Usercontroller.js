@@ -1,9 +1,12 @@
 const userModel = require("../models/user.js");
+
 const bcrypt = require('bcrypt')
 var jwt = require('jsonwebtoken');
 class Usercontroller {
   static userregistration = async (req, res) => {
+   
     const { name, email, password, password_confirmation } = req.body;
+   
     const user = await userModel.findOne({ email: email });
     if (user) {
       res.send({ status: "failed", message: "ᴛʜɪꜱ ᴇᴍᴀɪʟ ɪꜱ ᴀʟʀᴇᴀᴅʏ ᴇxɪᴛꜱ" });

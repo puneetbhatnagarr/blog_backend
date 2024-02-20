@@ -1,9 +1,12 @@
 const blogModel = require('../models/Blog.js')
 const contactModel = require('../models/contact.js')
+var cloudinary = require('cloudinary').v2;
 class Blogcontroller{
     static getall = async(req,res)=>{
         try{
+           
             res.setHeader("Access-Control-Allow-Origin","*")
+           
             const getall = await blogModel.find()
             res.status(200).json({
                 success:true,
@@ -16,10 +19,18 @@ class Blogcontroller{
     }
 
     static bloginsert = async(req,res)=>{
-        console.log(req.body)
+       
         try{
             res.setHeader('Access-Control-Allow-Origin','*');
+            const file = req.files.pimages;
+            console.log(file)
+            const myimage = await cloudinary.uploader.upload(file.tempFilePath,{
+              folder:'user_profile',
+              width:150,
+            })
+            console.log(myimage)
             const insertblog = await blogModel.create(req.body);
+            console.log(req.body)
             res.status(200).json({
              message:"Successfully Registered",
              success:true,
